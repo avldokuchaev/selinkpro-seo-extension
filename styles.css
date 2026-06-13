@@ -1,0 +1,18 @@
+.seo-badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin-left: 8px;
+    font-weight: bold;
+    display: inline-block;
+    color: white;
+}
+.badge-da {
+    background-color: #0584AC; 
+}
+.badge-spam-high { background-color: #dc3545; } 
+.badge-spam-med { background-color: #ffc107; color: black; } 
+.badge-spam-low { background-color: #28a745; } 
+.badge-loading {
+    background-color: #6c757d;
+}

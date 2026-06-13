@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SeLinkPro: SEO Metrics, Backlink Monitor, Indexation Checker</title>
+  <style>
+    body {
+      width: 600px; 
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #333;
+    }
+    .header {
+      background: #f8fafc;
+      padding: 18px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #2980b9;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .tagline {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 6px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .container {
+      padding: 16px;
+    }
+
+    .columns-wrapper {
+      display: flex;
+      gap: 20px;
+    }
+    .col-left {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #e2e8f0;
+      padding-right: 20px;
+    }
+    .col-right {
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-box {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: 1px solid #e2e8f0;
+    }
+    .info-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .info-step {
+      font-size: 12px;
+      color: #334155;
+      margin-bottom: 6px;
+      display: grid; 
+      grid-template-columns: 20px 1fr; 
+      gap: 10px;
+      line-height: 1.4;
+    }
+    .step-num {
+      color: #2980b9;
+      font-weight: 800;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 10px;
+      color: #64748b;
+      margin-bottom: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .key-container {
+      display: flex;
+      gap: 8px;
+      height: 38px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s;
+      background: #f8fafc;
+    }
+    input:focus {
+      background: #fff;
+      border-color: #2980b9;
+      box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+    }
+
+    .saved-key {
+      width: 100%;
+      padding: 0 12px;
+      border: 1px solid #27ae60;
+      background: #f0fff4;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #27ae60;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .saved-key::before {
+      content: '🔒';
+      font-size: 12px;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { 
+      background: #27ae60; 
+      box-shadow: 0 2px 4px rgba(39, 174, 96, 0.15);
+    }
+    .btn-primary:hover { background: #219653; }
+    
+    .btn-secondary { 
+      background: #2980b9; 
+      box-shadow: 0 2px 4px rgba(41, 128, 185, 0.15);
+    }
+    .btn-secondary:hover { background: #2471a3; }
+
+    .btn-icon {
+      width: 42px;
+      height: 38px;
+      flex-shrink: 0;
+      background: #fff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .btn-icon:hover { background: #f1f5f9; }
+
+    #status {
+      font-size: 12px;
+      text-align: center;
+      min-height: 18px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .footer {
+      background: #f8fafc;
+      padding: 14px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+    .footer a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: #2980b9; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="header-title"><img src="images/icone.png" width="25" height="25"> SeLinkPro</div>
+      <div id="balanceDisplay" style="background: #e2e8f0; color: #475569; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; display: none;">
+        Balance: $0.00
+    </div>
+    </div>
+    <div class="tagline">Advanced Domain & Link Analyzer</div>
+  </div>
+
+  <div class="container">
+    <div class="columns-wrapper">
+      
+      <div class="col-left">
+        <button id="runBtn" class="btn btn-primary">⚡ Check all links on page</button>
+        <button id="checkCurrentBtn" class="btn btn-secondary">🎯 Analyze current site</button>
+        <button id="highlightBtn" class="btn btn-secondary" style="background: #8e44ad; box-shadow: 0 2px 4px rgba(142, 68, 173, 0.15);">👀 Highlight project links</button>
+        <div id="status"></div>
+      </div>
+
+      <div class="col-right">
+        <div class="info-box">
+          <div class="info-title">🚀 How it works:</div>
+          <div class="info-step">
+            <span class="step-num">1.</span>
+            <span>Enter your API key and save it.</span>
+          </div>
+          <div class="info-step">
+            <span class="step-num">2.</span>
+            <span>Click <b>Analyze current site</b> to check the current domain.</span>
+          </div>
+          <div class="info-step">
+            <span class="step-num">3.</span>
+            <span>Use <b>Check all links on page</b> to scan all links on the page.</span>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Access API Key</label>
+
+          <div id="promoBox" style="margin-bottom: 12px; background: #eaf4fd; border: 1px solid #2980b9; padding: 10px; border-radius: 6px; text-align: center;">
+              <div style="font-size: 11px; color: #2c3e50; margin-bottom: 6px; font-weight: 600;">
+                No API Key yet?
+              </div>
+              <a href="https://selinkpro.com/sign-up" target="_blank" style="display: block; background: #f39c12; color: #fff; text-decoration: none; padding: 8px; border-radius: 4px; font-weight: bold; font-size: 12px; transition: 0.2s;">
+                🎁 Get FREE API Key + 5 Checks
+              </a>
+            </div>
+
+          <div id="editMode" class="key-container">
+            <input type="password" id="apiKey" placeholder="Paste your key here">
+            <button id="saveKeyBtn" class="btn-icon" title="Save">💾</button>
+          </div>
+          <div id="viewMode" class="key-container" style="display: none;">
+            <div id="savedKeyDisplay" class="saved-key"></div>
+            <button id="editKeyBtn" class="btn-icon" title="Change">✏️</button>
+            <button id="logoutBtn" class="btn-icon" title="Logout (Delete Key)" style="color: #c0392b;">🗑️</button>
+          </div>
+        </div>
+
+        <div id="projectSelectContainer" style="display: none; margin-bottom: 16px;">
+          <label>Save domains to project:</label>
+          <select id="projectSelector" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; font-weight: bold; color: #334155; outline: none; background: #f8fafc; cursor: pointer;"></select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://selinkpro.com" target="_blank">Official Website: SeLinkPro.com</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
