@@ -38,17 +38,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     
 
-    // if (request.action === "ACTIVATE_CONTENT_SCRIPT") {
-    //     chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
-    //         const activeTab = tabs[0];
-    //         const success = await injectContentScript(activeTab); 
-            
-    //         if (success) {
-    //             chrome.tabs.sendMessage(activeTab.id, { action: request.subAction });
-    //         }
-    //     });
-    //     return true;
-    // }
+    
 
     if (request.action === "ACTIVATE_CONTENT_SCRIPT") {
         chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {

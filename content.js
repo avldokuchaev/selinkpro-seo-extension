@@ -60,124 +60,6 @@ function isZombieDrop(dr, da, traffic, refDomainsMaj, refSubnets, cf, tf) {
 }
 
 
-// function updateVerdict(wrapper) {
-//     const dr         = parseFloat(wrapper.getAttribute('data-dr')          || 0);
-//     const da         = parseFloat(wrapper.getAttribute('data-da')          || 0);
-//     const traffic    = parseFloat(wrapper.getAttribute('data-traffic')     || 0);
-//     const trafVal    = parseFloat(wrapper.getAttribute('data-traf-val')    || 0);
-//     const tf         = parseFloat(wrapper.getAttribute('data-tf')          || 0);
-//     const cf         = parseFloat(wrapper.getAttribute('data-cf')          || 0);
-//     const spam       = parseFloat(wrapper.getAttribute('data-spam')        || 0);
-//     const rd         = parseFloat(wrapper.getAttribute('data-rd')          || 0);
-//     const refSubnets = parseFloat(wrapper.getAttribute('data-ref-subnets') || 0); 
-//     const refDomainsMaj = parseFloat(wrapper.getAttribute('data-ref-domains-maj') || 0);
-//     const linksOut   = parseFloat(wrapper.getAttribute('data-out')         || 0);
-//     const edu        = parseFloat(wrapper.getAttribute('data-edu')         || 0);
-//     const gov        = parseFloat(wrapper.getAttribute('data-gov')         || 0);
-//     const protocol   = wrapper.getAttribute('data-protocol') || "?";
-
-//     const vBox = wrapper.querySelector('.box-verdict');
-//     vBox.innerHTML = '';
-
-   
-//     const vetoes = [];
-
-//     if (protocol === "http")
-//         vetoes.push("HTTP (unsafe)");
-
-//     if (dr < 5 && traffic < 100)
-//         vetoes.push("DR < 5 & no traffic");
-
-//     const zombieSignals = isZombieDrop(dr, da, traffic, refDomainsMaj, refSubnets, cf, tf);
-//     if (zombieSignals) {
-//         vetoes.push(`Zombie Drop (${zombieSignals.length} signals):\n` + zombieSignals.map(s => `  · ${s}`).join('\n'));
-//     }
-
-//     if (dr > 30 && traffic < 50)
-//         vetoes.push("DR inflated (no traffic)");
-
-//     if (!zombieSignals) {
-//         if (tf > 0 && (cf / tf) > 2.5)
-//             vetoes.push(`Spam profile (CF/TF = ${(cf / tf).toFixed(1)})`);
-//         else if (tf === 0 && cf > 15)
-//             vetoes.push("TF = 0, CF inflated");
-//     }
-
-//     if (spam >= 30)
-//         vetoes.push(`Moz Spam Score: ${spam}%`);
-
-    
-//     if (vetoes.length > 0) {
-//         addBadge(vBox, "❌ NO GO", "#c0392b");
-//         const reasonsCont = document.createElement('div');
-//         reasonsCont.style.cssText = "margin-top: 4px; border-left: 2px solid #c0392b; padding-left: 5px;";
-        
-//         vetoes.forEach(reason => {
-//             reason.split('\n').forEach(line => {
-//                 const d = document.createElement('div');
-//                 d.style.cssText = "font-size: 10px; color: #e74c3c; margin-top: 2px; font-weight: bold;";
-//                 d.innerText = `${line.startsWith('  ·') ? line : '• ' + line}`;
-//                 reasonsCont.appendChild(d);
-//             });
-//         });
-//         vBox.appendChild(reasonsCont);
-//         return;
-//     }
-
-    
-//     const bonuses = [];
-//     if (edu + gov > 0) bonuses.push(`🎓 Edu/Gov links`);
-//     if (spam < 3)      bonuses.push(`✔ Clean Moz Spam`);
-//     if (tf >= 20)      bonuses.push(`✔ High TF`);
-//     if (dr >= 50)      bonuses.push(`💪 Strong DR: ${dr}`);
-//     if (traffic >= 1000) bonuses.push(`🔥 Traffic > 1k`);
-//     if (trafVal >= 100)   bonuses.push(`💰 TrafVal: $${trafVal}`);
-
-//     const warnings = [];
-//     if (linksOut > 500)   warnings.push(`⚠️ High Outbound (${linksOut})`);
-//     if (spam > 15 && spam < 30) warnings.push(`⚠️ Spam Score: ${spam}%`);
-
-    
-//     let verdict, color, reason = "";
-//     if (dr >= 40 && traffic >= 500 && spam < 3 && tf >= 20) {
-//         verdict = "✅ DEFINITELY BUY";
-//         color   = "#27ae60";
-//     } else if (dr >= 20 && traffic >= 100 && spam < 15) {
-//         verdict = "🆗 GOOD TO GO";
-//         color   = "#2980b9";
-//     } else if (dr >= 10 && traffic >= 20) {
-//         verdict = "⚠️ WEAK (buy with caution)";
-//         color   = "#d35400";
-//         reason  = "Low DR or low traffic";
-//     } else {
-//         verdict = "🚫 NO GO";
-//         color   = "#7f8c8d";
-//         reason  = "Donor is too weak";
-//     }
-
-//     addBadge(vBox, verdict, color);
-
-//     if (reason) {
-//         const r = document.createElement('div');
-//         r.style.cssText = "font-size: 9px; color: #7f8c8d; margin-top: 2px; font-style: italic;";
-//         r.innerText = reason;
-//         vBox.appendChild(r);
-//     }
-
-//     if (warnings.length > 0) {
-//         const wr = document.createElement('div');
-//         wr.style.cssText = "font-size: 9px; color: #d35400; margin-top: 4px; font-weight: bold; background: #fff3e0; padding: 2px 4px; border-radius: 3px;";
-//         wr.innerText = warnings.join(' · ');
-//         vBox.appendChild(wr);
-//     }
-
-//     if (bonuses.length > 0) {
-//         const b = document.createElement('div');
-//         b.style.cssText = "font-size: 9px; color: #27ae60; margin-top: 3px; font-weight: bold;";
-//         b.innerText = bonuses.join(' · ');
-//         vBox.appendChild(b);
-//     }
-// }
 
 
 function updateVerdict(wrapper) {
@@ -332,17 +214,14 @@ async function injectMetrics() {
             }
         }
 
-        // let textToAnalyze = el.innerText ? el.innerText.trim() : '';
-        // if (el.tagName.toLowerCase() === 'a' && el.href) {
-        //     textToAnalyze = textToAnalyze.match(domainRegex) ? textToAnalyze : el.href;
-        // }
+        
 
         let textToAnalyze = '';
         if (el.tagName.toLowerCase() === 'a' && el.href) {
-            // Для ссылок всегда берем атрибут href, он всегда полный
+            
             textToAnalyze = el.href;
         } else {
-            // Для текста берем innerText, но проверяем его позже регуляркой
+            
             textToAnalyze = el.innerText ? el.innerText.trim() : '';
         }
 
@@ -370,7 +249,7 @@ async function injectMetrics() {
             }
             if (isParentWrapper) return;
 
-            // Сначала отсеяли весь мусор и обертки, и только теперь проверяем на дубли
+            
             if (seenDomains.has(cleanDomain)) {
                 return;
             }

@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Слушатель изменения селекта
+    
     if (projectSelector) {
         projectSelector.addEventListener('change', (e) => {
             chrome.storage.local.set({ selectedProjectId: e.target.value });
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('balanceDisplay').style.display = 'none'; 
             setEditMode(); 
             
-            // Показываем статус выхода
+            
             statusDiv.style.color = '#e67e22';
             statusDiv.innerHTML = 'Logged out / Key deleted';
             setTimeout(() => statusDiv.innerHTML = '', 1500);
