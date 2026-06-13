@@ -19,7 +19,7 @@ async function injectContentScript(tab) {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
-    // НОВЫЙ БЛОК: Запрос проектов
+    
     if (request.action === "fetchProjects") {
         const apiUrl = "https://selinkpro.com/api/v1/projects"; 
         fetch(apiUrl, {
@@ -89,7 +89,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === "fetchAhrefs") {
-        // Берем и ключ, и ID проекта из памяти
+        
         chrome.storage.local.get(['userApiKey', 'selectedProjectId'], (result) => {
             const userApiKey = result.userApiKey;
             const projectId = result.selectedProjectId ? parseInt(result.selectedProjectId) : 0;
@@ -130,7 +130,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === "fetchBalance") {
-        // Укажи здесь реальный URL твоего API для получения баланса
+        
         const apiUrl = "https://selinkpro.com/api/v1/balance"; 
 
         fetch(apiUrl, {
